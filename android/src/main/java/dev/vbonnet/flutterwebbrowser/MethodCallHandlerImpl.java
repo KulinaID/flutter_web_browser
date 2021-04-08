@@ -6,7 +6,9 @@ import android.net.Uri;
 import androidx.browser.customtabs.CustomTabColorSchemeParams;
 import androidx.browser.customtabs.CustomTabsClient;
 import androidx.browser.customtabs.CustomTabsIntent;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.HashMap;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -75,18 +77,20 @@ public class MethodCallHandlerImpl implements MethodCallHandler {
     }
 
     CustomTabsIntent customTabsIntent = builder.build();
-    customTabsIntent.intent.setPackage(getPackageName());
+    customTabsIntent.intent.setPackage(getPackageName((List) options.get("packageNames")));
     customTabsIntent.launchUrl(activity, Uri.parse(url));
 
     result.success(null);
   }
 
   private void warmup(Result result) {
-    boolean success = CustomTabsClient.connectAndInitialize(activity, getPackageName());
+    boolean success = CustomTabsClient.connectAndInitialize(activity, getPackageName(new ArrayList()));
     result.success(success);
   }
 
-  private String getPackageName() {
-    return CustomTabsClient.getPackageName(activity, Arrays.asList("com.android.chrome"));
+  private String getPackageName(List<String> packageNames) {
+    ArrayList<String> packages = new ArrayList<String>(Arrays.asList("com.android.chrome"));
+    packages.addAll(packageNames);
+    return CustomTabsClient.getPackageName(activity, packages);
   }
 }

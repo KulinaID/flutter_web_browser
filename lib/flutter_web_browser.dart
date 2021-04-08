@@ -42,6 +42,7 @@ class CustomTabsOptions {
   final bool addDefaultShareMenuItem;
   final bool showTitle;
   final bool urlBarHidingEnabled;
+  final List<String> packageNames;
 
   const CustomTabsOptions({
     this.colorScheme = CustomTabsColorScheme.system,
@@ -52,6 +53,7 @@ class CustomTabsOptions {
     this.addDefaultShareMenuItem = false,
     this.showTitle = false,
     this.urlBarHidingEnabled = false,
+    this.packageNames = const [],
   });
 }
 
@@ -88,6 +90,7 @@ class FlutterWebBrowser {
         'addDefaultShareMenuItem': customTabsOptions.addDefaultShareMenuItem,
         'showTitle': customTabsOptions.showTitle,
         'urlBarHidingEnabled': customTabsOptions.urlBarHidingEnabled,
+        'packageNames': customTabsOptions.packageNames,
       },
       'ios_options': {
         'barCollapsingEnabled': safariVCOptions.barCollapsingEnabled,

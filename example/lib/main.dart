@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
                 RaisedButton(
                   onPressed: () {
                     FlutterWebBrowser.openWebPage(
-                      url: "https://flutter.io/",
+                      url: "https://kulina.id/",
                       customTabsOptions: CustomTabsOptions(
                         colorScheme: CustomTabsColorScheme.dark,
                         toolbarColor: Colors.deepPurple,
@@ -51,6 +51,9 @@ class _MyAppState extends State<MyApp> {
                         instantAppsEnabled: true,
                         showTitle: true,
                         urlBarHidingEnabled: true,
+                        packageNames: [
+                          'org.mozilla.firefox',
+                        ],
                       ),
                     );
                   },
@@ -67,7 +70,8 @@ class _MyAppState extends State<MyApp> {
                         barCollapsingEnabled: true,
                         preferredBarTintColor: Colors.green,
                         preferredControlTintColor: Colors.amber,
-                        dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
+                        dismissButtonStyle:
+                            SafariViewControllerDismissButtonStyle.close,
                         modalPresentationCapturesStatusBarAppearance: true,
                       ),
                     );
